@@ -1,10 +1,10 @@
 package com.stefanini.user;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Date;
 import java.util.List;
 
 @Path("/usuario")
@@ -21,30 +21,30 @@ public class Resource {
 
     @GET
     public List<Usuario> listaUsuarios() {
-        return List.of(new Usuario());
+        return service.getUsuarios();
     }
 
     @GET
     @Path("/{id}")
     public Usuario buscaUsuario(@PathParam("id") Long id) {
-        return new Usuario();
+        return service.getUsuario(id);
     }
 
     @POST
-    public Usuario criarUsuario(Usuario usuario) {
-        return usuario;
+    public Usuario criarUsuario(@Valid Usuario usuario) {
+        return service.createUsuario(usuario);
     }
 
     @PUT
     @Path("/{id}")
-    public Usuario adicionarInformacao(@PathParam("id") Long id) {
-        return new Usuario();
-
+    public Usuario adicionarInformacao(@PathParam("id") Long id, @Valid Usuario usuario) {
+        return service.updateUsuario(id, usuario);
     }
 
     @DELETE
     @Path("/{id}")
     public Response deletarUsuario(@PathParam("id") Long id) {
+        service.deleteUsuario(id);
         return Response.noContent().build();
     }
 

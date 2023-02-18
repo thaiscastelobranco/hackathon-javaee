@@ -1,4 +1,7 @@
 package com.stefanini.user;
 
-public class Repository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface Repository extends JpaRepository<Usuario, Long> {
+
 }
