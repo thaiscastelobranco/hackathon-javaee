@@ -5,10 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.util.Date;
 
 @Entity
@@ -22,31 +19,27 @@ public class Usuario {
 
     @Column(name = "desc_nome", nullable = false)
     @NotBlank
-    @Max(50)
+    @Size(max = 50)
     private String nome;
 
     @Column(name = "cod_login", nullable = false, unique = true)
-    @NotBlank
-    @Min(5)
-    @Max(20)
+    @Size(min = 5, max = 20)
     private String login;
 
     @Column(name = "desc_email", nullable = false)
     @NotBlank
     @Email
-    @Max(10)
+    @Size(min = 10)
     private String email;
 
     @Column(name = "desc_password", nullable = false)
-    @NotBlank
     @Password
-    @Min(4)
-    @Max(10)
+    @Size(min = 4, max = 10)
     private String senha;
 
     @Column(name = "dat_birth_date", nullable = false)
-    @NotBlank
     @Temporal(TemporalType.DATE)
+    @NotNull
     private Date dataNascimento;
 
     @Column(name = "dat_create_date")
