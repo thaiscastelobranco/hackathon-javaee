@@ -1,4 +1,4 @@
-package com.stefanini;
+package com.stefanini.user;
 
 public class Repository {
 }
