@@ -28,7 +28,13 @@ public class Service {
 
     public Usuario updateUsuario(Long id, Usuario usuario){
         Usuario existingUsuario = getUsuario(id);
-        return repository.save(usuario);
+        existingUsuario.setNome(usuario.getNome());
+        existingUsuario.setEmail(usuario.getEmail());
+        existingUsuario.setLogin(usuario.getLogin());
+        existingUsuario.setDataNascimento(usuario.getDataNascimento());
+        existingUsuario.setSenha(usuario.getSenha());
+
+        return repository.save(existingUsuario);
     }
 
     public void deleteUsuario(Long id){
